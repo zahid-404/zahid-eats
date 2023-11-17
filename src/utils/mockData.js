@@ -1,30 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-// Header
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="logo" src={require("./assets/logo.png")} />
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-// Style Card
-const styleCard = {
-  backgroundColor: "#D3D3D3",
-};
-// restaurent data
 const resList = [
   {
     info: {
@@ -1110,7 +1083,7 @@ const resList = [
       type: "WEBLINK",
     },
   },
- 
+
   {
     info: {
       id: "76502",
@@ -1284,60 +1257,5 @@ const resList = [
     },
   },
 ];
-// Restaurent Card
-const RestaurentCard = (props) => {
-  
-  const { resData } = props;
-  const {
-    name,
-    avgRating,
-    cuisines,
-    areaName,
-    cloudinaryImageId,
-    aggregatedDiscountInfoV3,
-  } = resData?.info;
-  return (
-    <div className="res-card" style={styleCard}>
-      <div className="img-container">
-        <img
-          className="cart-img"
-          src={
-            "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-            cloudinaryImageId
-          }
-        />
-        <div className="discount">{aggregatedDiscountInfoV3.header}</div>
-      </div>
-      <h3>{name}</h3>
-      <h4>{avgRating} ⭐</h4>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{areaName}</h4>
-    </div>
-  );
-};
 
-// Body
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="search">Search</div>
-      <div className="res-container">
-        {resList.map((restaurent) => (
-          <RestaurentCard key={restaurent.info.id} resData={restaurent} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const Applayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Applayout />);
+export default resList;
