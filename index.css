@@ -29,6 +29,7 @@
   flex-wrap: wrap;
 }
 .res-card {
+  background-color: #d3d3d3;
   width: 350px;
   border: 2px solid black;
   border-radius: 10px;
@@ -52,4 +53,9 @@
   position: absolute;
   top: 72%;
   left: 3%;
+}
+
+.filter-btn {
+  margin: 10px;
+  cursor: pointer;
 }

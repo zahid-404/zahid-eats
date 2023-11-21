@@ -1,5 +1,4 @@
 import { CDN_URL } from "../utils/constant";
-import { styleCard } from "../App";
 
 const RestaurentCard = (props) => {
   const { resData } = props;
@@ -12,10 +11,10 @@ const RestaurentCard = (props) => {
     aggregatedDiscountInfoV3,
   } = resData?.info;
   return (
-    <div className="res-card" style={styleCard}>
+    <div className="res-card">
       <div className="img-container">
         <img className="cart-img" src={CDN_URL + cloudinaryImageId} />
-        <div className="discount">{aggregatedDiscountInfoV3.header}</div>
+        <div className="discount">{aggregatedDiscountInfoV3?.header}</div>
       </div>
       <h3>{name}</h3>
       <h4>{avgRating} ⭐</h4>
