@@ -1,5 +1,6 @@
-import RestaurentCard from "./RestaurentCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import RestaurentCard from "./RestaurentCard";
 import { API_URL } from "../utils/constant";
 import Shimmer from "./Shimmer";
 
@@ -66,7 +67,12 @@ const Body = () => {
       </div>
       <div className="res-container">
         {listOfRestaurents.map((restaurent) => (
-          <RestaurentCard key={restaurent.info.id} resData={restaurent} />
+          <Link
+            key={restaurent.info.id}
+            to={"restaurent/" + restaurent.info.id}
+          >
+            <RestaurentCard resData={restaurent} />
+          </Link>
         ))}
       </div>
     </div>
