@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import RestaurentCard from "./RestaurentCard";
 import { API_URL } from "../utils/constant";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStaus";
 
 const Body = () => {
   let [listOfRestaurents, setListOfRestaurents] = useState([]);
@@ -23,6 +24,9 @@ const Body = () => {
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const onlineStatus = useOnlineStatus();
+  if (!onlineStatus) return <h1>Check you internet connection</h1>;
 
   return !listOfRestaurents || listOfRestaurents.length === 0 ? (
     <Shimmer />
