@@ -2,3 +2,9 @@
 /dist
 /.parcel-cache
 package-lock.json
+.postcssrc
+tailwind.config.js
+jsconfig.json
+components.json
+/src/libs
+/src/components/ui
