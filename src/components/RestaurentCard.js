@@ -11,15 +11,17 @@ const RestaurentCard = (props) => {
     aggregatedDiscountInfoV3,
   } = resData?.info;
   return (
-    <div className="res-card">
+    <div className="">
+    <div className="res-card w-[150px] h-[150px ] ">
       <div className="img-container">
-        <img className="cart-img" src={CDN_URL + cloudinaryImageId} />
+        <img className="cart-img w-auto h-full" src={CDN_URL + cloudinaryImageId} />
         <div className="discount">{aggregatedDiscountInfoV3?.header}</div>
       </div>
       <h3>{name}</h3>
       <h4>{avgRating} ⭐</h4>
       <h4>{cuisines.join(", ")}</h4>
       <h4>{areaName}</h4>
+    </div>
     </div>
   );
 };

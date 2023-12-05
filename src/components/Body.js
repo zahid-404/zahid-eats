@@ -69,7 +69,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap items-center justify-center mx-60">
         {listOfRestaurents.map((restaurent) => (
           <Link
             key={restaurent.info.id}
