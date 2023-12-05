@@ -4,6 +4,7 @@ import useOnlineStatus from "../utils/useOnlineStaus";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu, Moon, MoonIcon, Sun, SunIcon } from "lucide-react";
+import { ThemeToggle } from "./ui/themeToggle";
 
 const Header = () => {
   let [btnName, setBtnName] = useState("Login");
@@ -11,7 +12,7 @@ const Header = () => {
 
   return (
     // Header Container
-    <header className=" bg-blue-500 mx-auto max-w-7xl h-20 flex justify-between py-3 px-4 border-b items-center ">
+    <header className="  mx-auto max-w-7xl h-20 flex justify-between py-3 px-4 border-b items-center ">
       {/* Logo Container */}
       <div className="logo-container flex h-full  items-center">
         <img
@@ -75,16 +76,7 @@ const Header = () => {
       </nav>
       {/* Other navigation items */}
       <div className="flex items-center ">
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label="Toggle Theme"
-          className="mr-6"
-          // onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        >
-          <SunIcon className="absolute h-6 w-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <MoonIcon className=" h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-        </Button>
+        <ThemeToggle></ThemeToggle>
       </div>
     </header>
   );

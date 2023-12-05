@@ -6,15 +6,18 @@ import About from "./components/About";
 import Error from "./components/Error";
 import RestaurentMenu from "./components/RestaurentMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { ThemeProvider } from "./components/ui/theme";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const Applayout = () => {
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <ThemeProvider>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </ThemeProvider>
   );
 };
 
