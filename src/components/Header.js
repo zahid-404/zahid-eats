@@ -1,18 +1,17 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStaus";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { Menu, Moon, MoonIcon, Sun, SunIcon } from "lucide-react";
+import { Menu, ShoppingCart } from "lucide-react";
 import { ThemeToggle } from "./ui/themeToggle";
+import ProfileButton from "./ui/profileButton";
 
 const Header = () => {
-  let [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
 
   return (
     // Header Container
-    <header className="  mx-auto max-w-7xl h-20 flex justify-between py-3 px-4 border-b items-center ">
+    <header className=" mx-auto  h-20 flex justify-between py-6 px-4 md:px-20 border-b items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-md">
       {/* Logo Container */}
       <div className="logo-container flex h-full  items-center">
         <img
@@ -38,17 +37,6 @@ const Header = () => {
               <Button variant="ghost" className="w-20">
                 <Link to="/grocery">Grocery</Link>
               </Button>
-              <Button
-                variant="ghost"
-                className="login w-20"
-                onClick={() => {
-                  btnName === "Login"
-                    ? setBtnName("Logout")
-                    : setBtnName("Login");
-                }}
-              >
-                {btnName}
-              </Button>
             </nav>
           </SheetContent>
         </Sheet>
@@ -64,19 +52,12 @@ const Header = () => {
         <Button variant="ghost" className="w-20">
           <Link to="/grocery">Grocery</Link>
         </Button>
-        <Button
-          variant="ghost"
-          className="login w-20"
-          onClick={() => {
-            btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
-          }}
-        >
-          {btnName}
-        </Button>
       </nav>
       {/* Other navigation items */}
-      <div className="flex items-center ">
-        <ThemeToggle></ThemeToggle>
+      <div className="flex items-center gap-x-6 ">
+        <ShoppingCart className="h-6 w-6" />
+        <ThemeToggle />
+        <ProfileButton />
       </div>
     </header>
   );

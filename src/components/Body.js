@@ -4,6 +4,8 @@ import RestaurentCard from "./RestaurentCard";
 import { API_URL } from "../utils/constant";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStaus";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
 const Body = () => {
   let [listOfRestaurents, setListOfRestaurents] = useState([]);
@@ -16,6 +18,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(API_URL);
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     const json = await data.json();
     setListOfRestaurents(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -31,11 +34,39 @@ const Body = () => {
   return !listOfRestaurents || listOfRestaurents.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter">
+    // Main Container
+    <div className="flex mx-auto items-center my-10 md:my-16 flex-col gap-y-3 ">
+      <div className="flex flex-col md:flex-row gap-x-8">
+        {/* Search bar container */}
+        <div className="flex relative">
+          {/* search bar */}
+          <Input
+            type="text"
+            className="w-64 md:w-80 mx-4 md:mx-8 relative"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          ></Input>
+          {/* Button for filter */}
+          <Button
+            onClick={() => {
+              // filter restaurent
+              let filterResList = originalList.filter((restaurent) =>
+                restaurent?.info?.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase())
+              );
+              setListOfRestaurents(filterResList);
+            }}
+          >
+            Search
+          </Button>
+        </div>
         {/* top rated restaurent button */}
-        <button
-          className="filter-btn"
+        <Button
+          varient="ghost"
+          className="my-4 w-fit md:my-0 mx-auto"
           onClick={() => {
             let topRatedRest = originalList.filter(
               (restaurent) => restaurent?.info?.avgRating >= 4
@@ -44,34 +75,13 @@ const Body = () => {
           }}
         >
           Top Rated Restaurents
-        </button>
-
-        {/* search bar */}
-        <input
-          type="text"
-          className="search-box"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        ></input>
-        <button
-          onClick={() => {
-            // filter restaurent
-            let filterResList = originalList.filter((restaurent) =>
-              restaurent?.info?.name
-                .toLowerCase()
-                .includes(searchText.toLowerCase())
-            );
-            setListOfRestaurents(filterResList);
-          }}
-        >
-          Search
-        </button>
+        </Button>
       </div>
-      <div className="res-container flex flex-wrap items-center justify-center mx-60">
+      {/* res card conatainer */}
+      <div className="flex flex-wrap items-center justify-center my-16 gap-4">
         {listOfRestaurents.map((restaurent) => (
           <Link
+            className="outline-0 ring-primary transition duration-300 rounded-lg overflow-hidden shadow-md hover:shadow-lg"
             key={restaurent.info.id}
             to={"restaurent/" + restaurent.info.id}
           >
