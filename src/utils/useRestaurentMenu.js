@@ -11,7 +11,7 @@ const useRestaurentMenu = (resId) => {
   const fetchMenu = async () => {
     const data = await fetch(RES_MENU_URL + resId);
     const list = await data.json();
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     setResInfo(list);
   };
   return resInfo;
