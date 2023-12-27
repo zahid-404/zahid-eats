@@ -25,17 +25,17 @@ const Body = () => {
   const fetchData = async () => {
     // Simulate a delay to show the Shimmer loading effect
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    
+
     // Fetch data from the API
     const data = await fetch(API_URL);
     const json = await data.json();
-    
+
     // Set the list of restaurants and the original list
     setListOfRestaurants(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setOriginalList(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 

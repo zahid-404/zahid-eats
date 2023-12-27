@@ -1,5 +1,4 @@
 import { useRouteError } from "react-router-dom";
-import errorImg from "../assets/images/error.png";
 
 const Error = () => {
   // Use the useRouteError hook from react-router-dom to get information about the route error
@@ -14,7 +13,7 @@ const Error = () => {
       {/* Display the error image as a background */}
       <img
         className="w-screen h-screen object-fit"
-        src={errorImg}
+        src={require("../assets/images/error.png")}
         alt="Error background"
       />
 
