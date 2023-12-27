@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import RestaurentCard from "./RestaurentCard";
+import RestaurentCard, { withPromotedLabel } from "./RestaurentCard";
 import { API_URL } from "../utils/constant";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStaus";
@@ -8,19 +8,30 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 const Body = () => {
-  let [listOfRestaurents, setListOfRestaurents] = useState([]);
-  let [originalList, setOriginalList] = useState([]);
+  // State for the list of restaurants and the original list
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [originalList, setOriginalList] = useState([]);
+  // State for the search text
   const [searchText, setSearchText] = useState("");
 
+  // HOC to add a "promoted" label to the restaurant card
+  const RestaurentCardPromoted = withPromotedLabel(RestaurentCard);
+
+  // Fetch data from the API
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(API_URL);
+    // Simulate a delay to show the Shimmer loading effect
     await new Promise((resolve) => setTimeout(resolve, 2000));
+    
+    // Fetch data from the API
+    const data = await fetch(API_URL);
     const json = await data.json();
-    setListOfRestaurents(
+    
+    // Set the list of restaurants and the original list
+    setListOfRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setOriginalList(
@@ -28,10 +39,12 @@ const Body = () => {
     );
   };
 
+  // Check online status
   const onlineStatus = useOnlineStatus();
-  if (!onlineStatus) return <h1>Check you internet connection</h1>;
+  if (!onlineStatus) return <h1>Check your internet connection</h1>;
 
-  return !listOfRestaurents || listOfRestaurents.length === 0 ? (
+  return !listOfRestaurants || listOfRestaurants.length === 0 ? (
+    // Show Shimmer loading effect
     <Shimmer />
   ) : (
     // Main Container
@@ -39,53 +52,57 @@ const Body = () => {
       <div className="flex flex-col md:flex-row gap-x-8">
         {/* Search bar container */}
         <div className="flex relative">
-          {/* search bar */}
+          {/* Search bar input */}
           <Input
             type="text"
             className="w-64 md:w-80 mx-4 md:mx-8 relative"
             value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
+            onChange={(e) => setSearchText(e.target.value)}
           ></Input>
-          {/* Button for filter */}
+          {/* Button for filtering restaurants */}
           <Button
             onClick={() => {
-              // filter restaurent
-              let filterResList = originalList.filter((restaurent) =>
-                restaurent?.info?.name
+              // Filter restaurants based on the search text
+              let filteredResList = originalList.filter((restaurant) =>
+                restaurant?.info?.name
                   .toLowerCase()
                   .includes(searchText.toLowerCase())
               );
-              setListOfRestaurents(filterResList);
+              setListOfRestaurants(filteredResList);
             }}
           >
             Search
           </Button>
         </div>
-        {/* top rated restaurent button */}
+        {/* Top-rated restaurant button */}
         <Button
-          varient="ghost"
+          variant="ghost"
           className="my-4 w-fit md:my-0 mx-auto"
           onClick={() => {
-            let topRatedRest = originalList.filter(
-              (restaurent) => restaurent?.info?.avgRating >= 4
+            // Filter top-rated restaurants
+            let topRatedRestaurants = originalList.filter(
+              (restaurant) => restaurant?.info?.avgRating >= 4
             );
-            setListOfRestaurents(topRatedRest);
+            setListOfRestaurants(topRatedRestaurants);
           }}
         >
-          Top Rated Restaurents
+          Top Rated Restaurants
         </Button>
       </div>
-      {/* res card conatainer */}
+      {/* Restaurant card container */}
       <div className="flex flex-wrap items-center justify-center my-16 gap-4">
-        {listOfRestaurents.map((restaurent) => (
+        {listOfRestaurants.map((restaurant) => (
           <Link
             className="outline-0 ring-primary transition duration-300 rounded-lg overflow-hidden shadow-md hover:shadow-lg"
-            key={restaurent.info.id}
-            to={"restaurent/" + restaurent.info.id}
+            key={restaurant.info.id}
+            to={"restaurant/" + restaurant.info.id}
           >
-            <RestaurentCard resData={restaurent} />
+            {/* Display promoted ribbon for promoted restaurants */}
+            {restaurant.info.promoted ? (
+              <RestaurentCardPromoted resData={restaurant} />
+            ) : (
+              <RestaurentCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

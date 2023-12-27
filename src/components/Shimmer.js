@@ -1,8 +1,9 @@
-import React from "react";
-import { Skeleton } from "./ui/skeleton";
+  import { Skeleton } from "./ui/skeleton";
 
+// Skeleton component for individual restaurant cards
 const RestaurantCardSkeleton = () => {
   return (
+    // Main Skeleton Card Container
     <div className="rounded-lg border-2 w-[300px] overflow-hidden">
       {/* Image skeleton */}
       <Skeleton className="h-[180px] w-full rounded-t-lg" />
@@ -31,8 +32,10 @@ const RestaurantCardSkeleton = () => {
   );
 };
 
+// Shimmer component to display a loading animation with multiple skeleton cards
 const Shimmer = () => {
   return (
+    // Container for multiple skeleton cards
     <div className="flex flex-wrap items-center justify-center my-16 gap-4">
       {/* Display multiple skeleton cards */}
       {[...Array(16)].map((_, index) => (
