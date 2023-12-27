@@ -25,7 +25,7 @@ const Header = () => {
         {/* Logo for smaller screens */}
         <img
           className="hidden md:block w-24"
-          src={require("../assets/images/zwiggy.png")}
+          src={require("../assets/images/ZWIGGY.png")}
           alt="Zwiggy Logo"
         />
 
