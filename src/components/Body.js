@@ -24,7 +24,7 @@ const Body = () => {
 
   const fetchData = async () => {
     // Simulate a delay to show the Shimmer loading effect
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Fetch data from the API
     const data = await fetch(API_URL);
