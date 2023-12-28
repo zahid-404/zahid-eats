@@ -20,7 +20,7 @@ const useRestaurentMenu = (resId) => {
     const menuData = await data.json();
 
     // Simulate a delay (e.g., loading indicator) for 2 seconds
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Update the state with the fetched restaurant menu information
     setResInfo(menuData);
