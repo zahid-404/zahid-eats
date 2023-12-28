@@ -9,3 +9,7 @@ export const API_URL =
 // URL for fetching restaurant menus based on restaurant ID
 export const RES_MENU_URL =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=24.585445&lng=73.712479&restaurantId=";
+
+// URL for fetching menu items images
+export const MENU_IMG_URL =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/";
