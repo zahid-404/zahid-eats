@@ -69,7 +69,14 @@ const Header = () => {
       {/* Other navigation items */}
       <div className="flex items-center gap-x-6 ">
         {/* Shopping Cart icon */}
-        <ShoppingCart className="h-6 w-6" />
+        <div className="relative py-2">
+          <div className="t-0 -top-2 absolute left-3">
+            <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+              0
+            </p>
+          </div>
+          <ShoppingCart className="h-6 w-6" />
+        </div>
 
         {/* Theme Toggle button */}
         <ThemeToggle />
