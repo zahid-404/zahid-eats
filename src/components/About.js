@@ -1,8 +1,9 @@
-/**
- * About component represents the about page of the food app.
- * It provides information about the app and a brief introduction.
- */
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
+
 const About = () => {
+  const { loggedInUser } = useContext(UserContext);
+
   return (
     // Section for the about page, utilizing Tailwind CSS classes for styling
     <section className="flex items-center py-10 bg-stone-100 xl:h-screen font-poppins dark:bg-gray-800 ">
@@ -64,7 +65,7 @@ const About = () => {
               href="#"
               className="px-4 py-3 text-gray-50 transition-all transform bg-blue-400 rounded-[80px] hover:bg-blue-500 dark:hover:text-gray-100 dark:text-gray-100 "
             >
-              Learn more
+              {loggedInUser}
             </a>
           </div>
         </div>
