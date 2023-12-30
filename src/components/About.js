@@ -2,13 +2,14 @@ import UserContext from "../utils/UserContext";
 import { useContext } from "react";
 
 const About = () => {
+  // creat dummy user context
   const { loggedInUser } = useContext(UserContext);
 
   return (
     // Section for the about page, utilizing Tailwind CSS classes for styling
     <section className="flex items-center py-10 bg-stone-100 xl:h-screen font-poppins dark:bg-gray-800 ">
       {/* Container for content with responsive styling */}
-      <div className="justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
+      <div className="justify-center flex-1 max-w-6xl p y-4 mx-auto lg:py-6 md:px-6">
         {/* Two-column layout for visual and textual content */}
         <div className="flex flex-wrap ">
           {/* Visual content column */}
