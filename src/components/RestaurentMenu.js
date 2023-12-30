@@ -3,6 +3,7 @@ import useRestaurentMenu from "../utils/useRestaurentMenu";
 import RestaurentMenuShimmer from "./ResMenuShimmer";
 import ItemAccordian from "./ItemAccordian";
 import { Star } from "lucide-react";
+import { Accordion } from "./ui/accordion";
 
 const RestaurentMenu = () => {
   // Get restaurant ID from URL parameters
@@ -47,11 +48,11 @@ const RestaurentMenu = () => {
       </div>
 
       {/* Accordion section for menu categories */}
-      <div className="my-16">
+      <Accordion className="my-16" type="single" collapsible>
         {categories.map((categ, index) => (
           <ItemAccordian key={index} categ={categ} />
         ))}
-      </div>
+      </Accordion>
     </section>
   );
 };
