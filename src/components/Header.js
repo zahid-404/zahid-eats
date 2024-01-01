@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStaus";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu, ShoppingCart } from "lucide-react";
 import { ThemeToggle } from "./ui/themeToggle";
 import ProfileButton from "./ui/profileButton";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  // Check online status
-  const onlineStatus = useOnlineStatus();
+  // subscribing to the store using selector
+  const cartItems = useSelector((store) => store.cart.items);
 
   return (
     // Header Container
@@ -72,7 +72,7 @@ const Header = () => {
         <div className="relative py-2">
           <div className="t-0 -top-2 absolute left-3">
             <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
-              0
+              {cartItems.length}
             </p>
           </div>
           <ShoppingCart className="h-6 w-6" />

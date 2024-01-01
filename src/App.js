@@ -8,13 +8,14 @@ import RestaurentMenu from "./components/RestaurentMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { ThemeProvider } from "./components/ui/theme";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 // Lazily load the Grocery component for code splitting
 const Grocery = lazy(() => import("./components/Grocery"));
 
 // Define the layout for the entire application
 const AppLayout = () => {
-
   const [userName, setUserName] = useState();
   useEffect(() => {
     // mimic an api call
@@ -24,19 +25,21 @@ const AppLayout = () => {
     setUserName(data.name);
   }, []);
   return (
-    // Wrap the entire application in the ThemeProvider to provide a consistent theme
-    <UserContext.Provider value={{ loggedInUser: userName }}>
-      <ThemeProvider>
-        {/* Main application container */}
-        <div className="app">
-          {/* Display the Header component at the top */}
-          <Header />
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName }}>
+        {/* Wrap the entire application in the ThemeProvider to provide a consistent theme */}
+        <ThemeProvider>
+          {/* Main application container */}
+          <div className="app">
+            {/* Display the Header component at the top */}
+            <Header />
 
-          {/* Outlet for rendering the child components based on the current route */}
-          <Outlet />
-        </div>
-      </ThemeProvider>
-    </UserContext.Provider>
+            {/* Outlet for rendering the child components based on the current route */}
+            <Outlet />
+          </div>
+        </ThemeProvider>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 

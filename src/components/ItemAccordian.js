@@ -3,12 +3,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-
 import { MENU_IMG_URL } from "../utils/constant";
 import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const ItemAccordian = ({ categ }) => {
+  const dispatch = useDispatch();
+  const handleAddItem = () => {
+    dispatch(addItem("pizza"));
+  };
+
   return (
     <AccordionItem value={categ?.card?.card?.title}>
       {/* Accordion Trigger: Category title and item count */}
@@ -33,6 +39,7 @@ const ItemAccordian = ({ categ }) => {
               <Button
                 variant="outline"
                 className="bottom-2 z-10 absolute left-1/2 transform -translate-x-1/2"
+                onClick={handleAddItem}
               >
                 Add <Plus />
               </Button>
