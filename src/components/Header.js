@@ -68,8 +68,10 @@ const Header = () => {
 
       {/* Other navigation items */}
       <div className="flex items-center gap-x-6 ">
+      <Link to="/cart">
         {/* Shopping Cart icon */}
         <div className="relative py-2">
+
           <div className="t-0 -top-2 absolute left-3">
             <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
               {cartItems.length}
@@ -77,6 +79,7 @@ const Header = () => {
           </div>
           <ShoppingCart className="h-6 w-6" />
         </div>
+      </Link>
 
         {/* Theme Toggle button */}
         <ThemeToggle />

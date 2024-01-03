@@ -10,6 +10,8 @@ import { ThemeProvider } from "./components/ui/theme";
 import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import { Toaster } from "./components/ui/toaster";
+import Cart from "./components/Cart";
 
 // Lazily load the Grocery component for code splitting
 const Grocery = lazy(() => import("./components/Grocery"));
@@ -33,7 +35,7 @@ const AppLayout = () => {
           <div className="app">
             {/* Display the Header component at the top */}
             <Header />
-
+            <Toaster />
             {/* Outlet for rendering the child components based on the current route */}
             <Outlet />
           </div>
@@ -70,6 +72,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId", // Child route for displaying restaurant menus
         element: <RestaurentMenu />, // Render the RestaurentMenu component
+      },
+      {
+        path: "/cart", // Child route for displaying restaurant menus
+        element: <Cart />, // Render the RestaurentMenu component
       },
     ],
     // Error element to render when there's an error in the route
