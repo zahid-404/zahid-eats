@@ -5,7 +5,6 @@ const User = () => {
     <div className="user-card">
       {/* Display user name */}
       <h2>Name: Zahid</h2>
-      
       {/* Display user location */}
       <h3>Location: Udaipur</h3>
       
