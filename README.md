@@ -71,7 +71,10 @@ Make sure you have Node.js installed on your machine before proceeding. If you h
 
 ## Screenshots/GIFs
 
-<img width="750" height="500" alt="color picker" src="https://i.imgur.com/gqoyCrJ.gif" />
+Check out the GIF of [Zahid-Eats](https://i.imgur.com/gqoyCrJ.gif).
+
+<img width="750" height="500" alt="color picker" src="https://i.imgur.com/QDt1Ybp.png" />
+
 
 
 ## Live Website
